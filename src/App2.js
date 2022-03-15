@@ -1,6 +1,6 @@
 import "./App.css";
 import { Component } from "react";
-import { CardList } from "./components/card-list/CardList.component";
+import { CardList } from "./components/card-list/cardList.component";
 import { SearchBox } from "./components/search-box/search-box.component";
 
 class App2 extends Component {
@@ -19,7 +19,11 @@ class App2 extends Component {
 	componentDidMount() {
 		fetch("https://jsonplaceholder.typicode.com/users")
 			.then((response) => response.json())
-			.then((users) => this.setState({ monsters: users }));
+			.then((users) => this.setState(
+				() => {return { monsters: users }},
+				() => {
+					console.log(this.state)
+				}));
 	}
 
 	handleChange = (e) => {
